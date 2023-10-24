@@ -15,8 +15,11 @@ const mesh = new THREE.Mesh(geometry, material)
 // Moving the object before to render, and after creating the mesh
 mesh.position.x = 0.7 // Going to the right
 mesh.position.y = -0.6 // Going to the down
-mesh.position.z = -1 // Going to the back
+mesh.position.z = 1 // Going to the back
 scene.add(mesh)
+// normalize() will take the vector length and normalize to 1.
+mesh.position.normalize()
+console.log(mesh.position.length()) // Distance between center of the scene and center of object
 
 /**
  * Sizes
@@ -32,6 +35,8 @@ const sizes = {
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
 camera.position.z = 3
 scene.add(camera)
+// Get the distance from mesh object to the camera
+console.log(mesh.position.distanceTo(camera.position))
 
 /**
  * Renderer

@@ -9,21 +9,29 @@ const scene = new THREE.Scene()
 /**
  * Objects
  */
-const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-const mesh = new THREE.Mesh(geometry, material)
-// Another manner to set position of an object
-mesh.position.set(0.7, -0.6, 1)
-scene.add(mesh)
+const group = new THREE.Group()
+group.rotation.y = 1
+scene.add(group)
 
-// Scale geometry. you can use properties or X.scale.set(x, y, z)
-mesh.scale.set(2, 0.5, 0.5)
+const cube1 = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0xff0000})
+)
+group.add(cube1)
 
-// Rotation (order xyz by default)
-// Reorder to move y for the first
-mesh.rotation.reorder('YXZ')
-mesh.rotation.y = Math.PI * 0.25
-mesh.rotation.x = Math.PI * 0.25
+const cube2 = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0x00ff00})
+)
+cube2.position.x = -2
+group.add(cube2)
+
+const cube3 = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0x0000ff})
+)
+cube3.position.x = 2
+group.add(cube3)
 
 /**
  * Sizes
@@ -39,8 +47,7 @@ const sizes = {
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
 camera.position.z = 3
 scene.add(camera)
-// Get the distance from mesh object to the camera
-console.log(mesh.position.distanceTo(camera.position))
+
 
 /**
  * Renderer

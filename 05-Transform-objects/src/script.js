@@ -16,10 +16,9 @@ const mesh = new THREE.Mesh(geometry, material)
 mesh.position.set(0.7, -0.6, 1)
 scene.add(mesh)
 
+// Scale geometry. you can use properties or X.scale.set(x, y, z)
+mesh.scale.x = -2
 
-// Axes Helper
-const axesHelper = new THREE.AxesHelper()
-scene.add(axesHelper)
 /**
  * Sizes
  */
